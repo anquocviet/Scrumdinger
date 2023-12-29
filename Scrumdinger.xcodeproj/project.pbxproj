@@ -43,6 +43,7 @@
 /* Begin PBXFileReference section */
 		041C7AD42A8754D200F25454 /* ScrumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrumsView.swift; sourceTree = "<group>"; };
 		04488CBF2A63EB7C006E920A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		048D66982B3AEA3600BA1A86 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0498B1F52A5D4E9C00711C80 /* Scrumdinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrumdinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0498B1F82A5D4E9C00711C80 /* ScrumdingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrumdingerApp.swift; sourceTree = "<group>"; };
 		0498B1FA2A5D4E9C00711C80 /* MeetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingView.swift; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 		0498B1EC2A5D4E9C00711C80 = {
 			isa = PBXGroup;
 			children = (
+				048D66982B3AEA3600BA1A86 /* README.md */,
 				0498B1F62A5D4E9C00711C80 /* Products */,
 				0498B1F72A5D4E9C00711C80 /* Scrumdinger */,
 				0498B2082A5D4E9E00711C80 /* ScrumdingerTests */,
