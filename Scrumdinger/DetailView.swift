@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailtView: View {
+struct DetailView: View {
     @Binding var scrum: DailyScrum
     
     @State private var editingScrum = DailyScrum.emptyScrum
@@ -16,7 +16,7 @@ struct DetailtView: View {
     var body: some View {
         List {
             Section(header: Text("Meeting Info")) {
-                NavigationLink (destination: MeetingView()) {
+                NavigationLink (destination: MeetingView(scrum: $scrum)) {
                     Label("Start Meeting", systemImage: "timer")
                         .font(.headline)
                     .foregroundColor(.accentColor)
@@ -41,6 +41,18 @@ struct DetailtView: View {
             Section(header: Text("Attendees")) {
                 ForEach(scrum.attendees) { attendee in
                     Label(attendee.name, systemImage: "person")
+                }
+            }
+            Section(header: Text("History")) {
+                if scrum.history.isEmpty {
+                    Label("No meeting yet", systemImage: "calendar.badge.exclamationmark")
+                }
+                ForEach(scrum.history) { history in
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text(history.date, style: .date)
+                    }
+                    
                 }
             }
         }
@@ -75,6 +87,6 @@ struct DetailtView: View {
 
 #Preview {
     NavigationStack {
-        DetailtView(scrum: .constant(DailyScrum.sampleData[0]))
+        DetailView(scrum: .constant(DailyScrum.sampleData[0]))
     }
 }
