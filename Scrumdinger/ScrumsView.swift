@@ -15,27 +15,53 @@ struct ScrumsView: View {
     let saveAction: () -> Void
     
     var body: some View {
-        NavigationStack {
-            List($scrums) { $scrum in
-                NavigationLink(destination: DetailView(scrum: $scrum)) {
-                    CardView(scrum: scrum)
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                List($scrums) { $scrum in
+                    NavigationLink(destination: DetailView(scrum: $scrum)) {
+                        CardView(scrum: scrum)
+                    }
+                    .listRowBackground(scrum.theme.mainColor)
                 }
-                .listRowBackground(scrum.theme.mainColor)
+                .navigationTitle("Daily Scrums")
+                .toolbar {
+                    Button(action: { isPresentingNewScrumView = true }, label: {
+                        Image(systemName: "plus")
+                    })
+                    .accessibilityLabel("New Scrum")
+                }
             }
-            .navigationTitle("Daily Scrums")
-            .toolbar {
-                Button(action: { isPresentingNewScrumView = true }, label: {
-                    Image(systemName: "plus")
-                })
-                .accessibilityLabel("New Scrum")
+            .sheet(isPresented: $isPresentingNewScrumView) {
+                NewScrumSheet(scrums: $scrums, isPresentingNewScrumView: $isPresentingNewScrumView)
+            }
+            .onChange(of: scenePhase) { phase in
+                if phase == .inactive { saveAction() }
+                
             }
         }
-        .sheet(isPresented: $isPresentingNewScrumView) {
-            NewScrumSheet(scrums: $scrums, isPresentingNewScrumView: $isPresentingNewScrumView)
-        }
-        .onChange(of: scenePhase) { phase in
-            if phase == .inactive { saveAction() }
-            
+        else {
+            NavigationView {
+                List($scrums) { $scrum in
+                    NavigationLink(destination: DetailView(scrum: $scrum)) {
+                        CardView(scrum: scrum)
+                    }
+                    .listRowBackground(scrum.theme.mainColor)
+                }
+                .navigationTitle("Daily Scrums")
+                .toolbar {
+                    Button(action: { isPresentingNewScrumView = true }, label: {
+                        Image(systemName: "plus")
+                    })
+                    .accessibilityLabel("New Scrum")
+                }
+            }
+            .sheet(isPresented: $isPresentingNewScrumView) {
+                NewScrumSheet(scrums: $scrums, isPresentingNewScrumView: $isPresentingNewScrumView)
+            }
+            .onChange(of: scenePhase) { phase in
+                if phase == .inactive { saveAction() }
+                
+            }
         }
         
     }
