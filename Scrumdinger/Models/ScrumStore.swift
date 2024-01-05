@@ -38,6 +38,4 @@ class ScrumStore: ObservableObject {
         }
         _ = try await task.value
     }
-    
-    
 }
