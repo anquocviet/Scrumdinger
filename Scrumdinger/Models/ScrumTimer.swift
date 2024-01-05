@@ -99,7 +99,6 @@ final class ScrumTimer: ObservableObject {
     }
 
     nonisolated private func update() {
-
         Task { @MainActor in
             guard let startDate,
                   !timerStopped else { return }
@@ -110,7 +109,6 @@ final class ScrumTimer: ObservableObject {
                 return
             }
             secondsRemaining = max(lengthInSeconds - self.secondsElapsed, 0)
-
             if secondsElapsedForSpeaker >= secondsPerSpeaker {
                 changeToSpeaker(at: speakerIndex + 1)
                 speakerChangedAction?()
